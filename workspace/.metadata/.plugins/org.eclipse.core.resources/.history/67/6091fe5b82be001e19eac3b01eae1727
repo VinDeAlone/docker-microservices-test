@@ -1,0 +1,10 @@
+package com.demo.sampleService.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tbl_demo")
+public class Demo {
+
+}

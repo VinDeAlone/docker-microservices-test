@@ -1,0 +1,6 @@
+
+server.port = 8506
+
+spring.data.mongodb.host=host.docker.internal
+spring.data.mongodb.port=8107
+spring.data.mongodb.database=file_system

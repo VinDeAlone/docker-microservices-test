@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  demo-app:
+     image: vindealone/demomicroservice:0.0.1
+     container_name: demomicroservicecontainer
+     restart: on-failure
+     ports:
+        - 8104:8506
+     environment: 
+        SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:8107/localdemodb?useSSL=false
+        SPRING_DATASOURCE_USERNAME: admin
+        SPRING_DATASOURCE_PASSWORD: root
+     depends_on:
+        - mysqldb
+        
+        
+  test-app: 
+     image: vindealone/testmicroservice
+     container_name: testmicroservicecontainer
+     restart: on-failure
+     ports:
+        - 8105:8506
+     environment:
+        SPRING_DATA_MONGODB_HOST: host.docker.internal
+        SPRING_DATA_MONGODB_PORT: 8108
+        SPRING_DATA_MONGODB_DATABASE: localtestdb
+     depends_on:
+        - mongodb
+        
+        
+  sample-app:
+     image: vindealone/samplemicroservice:0.0.1
+     container_name: samplemicroservicecontainer
+     restart: on-failure
+     ports:
+        - 8106:8506
+     environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:8107/localdemodb?useSSL=false
+        SPRING_DATASOURCE_USERNAME: admin
+        SPRING_DATASOURCE_PASSWORD: root
+        SPRING_DATA_MONGODB_HOST: host.docker.internal
+        SPRING_DATA_MONGODB_PORT: 8108
+        SPRING_DATA_MONGODB_DATABASE: localtestdb
+     depends_on:
+        - mysqldb
+        - mongodb
+        
+        
+        
+        
+  mysqldb:
+     image: mysql:5.7
+     container_name: mysqldbcontainer
+     restart: always
+     ports:
+        - 8107:3306
+     environment:
+        MYSQL_ROOT_PASSWORD: rootpassword1000
+        MYSQL_DATABASE: localdemodb
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: root
+        
+        
+  mongodb:
+     image: mongo
+     container_name: mongodbcontainer
+     restart: always
+     ports:
+        - 8108:27017
+     environment:
+        MONGO_INITDB_DATABASE: localtestdb
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  demo-app:
+     image: vindealone/demomicroservice:0.0.1
+     container_name: demomicroservicecontainer
+     restart: on-failure
+     ports:
+        - 8104:8506
+     environment: 
+        SPRING_DATASOURCE_URL: jff
+        SPRING_DATASOURCE_USERNAME: HNG
+        SPRING_DATASOURCE_PASSWORD: JV
+     depends_on:
+        - mysqldb
+        
+        
+  test-app: 
+     image: vindealone/testmicroservice:0.0.1
+     container_name: testmicroservicecontainer
+     restart: on-failure
+     ports:
+        - 8105:8506
+     environment:
+        SPRING_DATA_MONGODB_HOST: host.docker.internal
+        SPRING_DATA_MONGODB_PORT: jv
+        SPRING_DATA_MONGODB_DATABASE: GFK
+     depends_on:
+        - mongodb

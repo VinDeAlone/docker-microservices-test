@@ -1,0 +1,5 @@
+package com.demo.sampleService.services;
+
+public interface DemoService {
+
+}

@@ -1,0 +1,5 @@
+package com.demo.testService.repositories;
+
+public interface TestRepository {
+
+}

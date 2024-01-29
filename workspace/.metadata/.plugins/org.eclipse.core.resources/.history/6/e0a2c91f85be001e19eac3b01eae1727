@@ -1,0 +1,22 @@
+
+
+spring:
+   datasource:
+      url: jdbc:mysql://host.docker.internal:8097/demodb?useSSL=false
+      username: admin
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+   jpa:
+      hibernate:
+         ddl-auto: update
+      database-platform: org.hibernate.dialect.MySQLDialect
+      show-sql: true
+      
+      
+      
+   data:
+      mongodb:
+         host: host.docker.internal
+         database: testdb
+         port: 8107
+      

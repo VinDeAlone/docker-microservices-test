@@ -1,0 +1,12 @@
+
+
+Spring:
+   data:
+      mongodb:
+         host: host.docker.internal
+         port: 8107
+         database: testdb
+         
+         
+server:
+   port: 8506

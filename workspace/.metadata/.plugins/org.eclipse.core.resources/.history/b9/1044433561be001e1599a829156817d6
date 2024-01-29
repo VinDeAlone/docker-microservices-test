@@ -1,0 +1,5 @@
+package com.demo.demoService.entities;
+
+public class Demo {
+
+}

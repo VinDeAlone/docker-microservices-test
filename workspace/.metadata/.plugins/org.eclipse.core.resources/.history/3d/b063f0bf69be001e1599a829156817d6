@@ -1,0 +1,16 @@
+package com.demo.sampleService.entities;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Document
+@Data
+@Builder
+public class Test {
+	
+	private int id;
+	private String name;
+
+}

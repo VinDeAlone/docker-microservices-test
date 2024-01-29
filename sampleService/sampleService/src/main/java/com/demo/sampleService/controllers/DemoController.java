@@ -1,0 +1,39 @@
+package com.demo.sampleService.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.sampleService.entities.Demo;
+import com.demo.sampleService.services.DemoService;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/demo")
+public class DemoController {
+	
+	@Autowired
+	private DemoService ser;
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getDemo(@PathVariable int id){
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(this.ser.getDemo(id))
+				;
+	}
+	
+	@PostMapping
+	public ResponseEntity<?> createDemo(@RequestBody Demo demo){
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(this.ser.createDemo(demo))
+				;
+	}
+
+}
